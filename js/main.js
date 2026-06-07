@@ -177,9 +177,10 @@ function renderRecording() {
     <div class="slideout-section-label">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
       Recording
+      <span class="rec-demo-badge">Demo</span>
     </div>
     <div class="recording-player">
-      <button class="rec-play-btn" aria-label="Play recording">
+      <button class="rec-play-btn" aria-label="Play recording (unavailable in demo)" title="Available in full version">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="white"><polygon points="5 3 19 12 5 21 5 3"/></svg>
       </button>
       <span class="rec-time">0:00</span>
@@ -237,7 +238,60 @@ function closeSlideout() {
   overlay.classList.remove('open');
   slideout.classList.remove('open');
   overlay.setAttribute('aria-hidden', 'true');
+  hideRecPopover();
 }
+
+// ── Recording locked popover ────────────────────
+const recPopover = document.getElementById('rec-popover');
+const recPopoverClose = document.getElementById('rec-popover-close');
+
+function showRecPopover(btn) {
+  const rect = btn.getBoundingClientRect();
+  recPopover.removeAttribute('hidden');
+  // Position above the button, arrow pointing down
+  const popW = 268;
+  let left = rect.left - 16; // align arrow roughly with button
+  // Keep within viewport
+  if (left + popW > window.innerWidth - 12) left = window.innerWidth - popW - 12;
+  if (left < 8) left = 8;
+  const top = rect.top - recPopover.offsetHeight - 12;
+  recPopover.style.left = left + 'px';
+  recPopover.style.top = (top < 8 ? rect.bottom + 12 : top) + 'px';
+  // Flip arrow if shown below
+  if (top < 8) {
+    recPopover.style.setProperty('--arrow-top', 'auto');
+    recPopover.style.setProperty('--arrow-bottom', 'auto');
+    recPopover.style.removeProperty('--arrow-flip');
+    recPopover.classList.add('rec-popover-below');
+  } else {
+    recPopover.classList.remove('rec-popover-below');
+  }
+  requestAnimationFrame(() => recPopover.classList.add('rec-popover-visible'));
+}
+
+function hideRecPopover() {
+  recPopover.classList.remove('rec-popover-visible', 'rec-popover-below');
+  recPopover.addEventListener('transitionend', () => recPopover.setAttribute('hidden', ''), { once: true });
+}
+
+recPopoverClose.addEventListener('click', hideRecPopover);
+
+// Event delegation — slideout body may be re-rendered
+document.addEventListener('click', e => {
+  if (e.target.closest('.rec-play-btn')) {
+    e.stopPropagation();
+    if (recPopover.classList.contains('rec-popover-visible')) {
+      hideRecPopover();
+    } else {
+      showRecPopover(e.target.closest('.rec-play-btn'));
+    }
+    return;
+  }
+  // Close if clicking outside
+  if (!e.target.closest('#rec-popover') && recPopover.classList.contains('rec-popover-visible')) {
+    hideRecPopover();
+  }
+});
 
 document.querySelectorAll('.dash-row').forEach(row => {
   row.addEventListener('click', () => openSlideout(row.dataset.id));
