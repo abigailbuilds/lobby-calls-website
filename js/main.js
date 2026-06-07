@@ -48,7 +48,7 @@ if (demoForm) {
     window.location.href = 'mailto:hello@abigailbuilds.com?subject=' + subject + '&body=' + body;
 
     demoForm.reset();
-    setDemoFormStatus('Opening your email app with everything filled in…', 'is-success');
+    setDemoFormStatus('Opening your email app… or email us directly at hello@abigailbuilds.com', 'is-success');
   });
 }
 
