@@ -12,6 +12,46 @@ document.querySelectorAll('.demo-tab').forEach(tab => {
   });
 });
 
+const demoForm = document.getElementById('demo-request-form');
+const demoFormStatus = document.getElementById('demo-form-status');
+
+function setDemoFormStatus(message, kind) {
+  if (!demoFormStatus) return;
+  demoFormStatus.textContent = message;
+  demoFormStatus.classList.remove('is-success', 'is-error');
+  if (kind) demoFormStatus.classList.add(kind);
+}
+
+if (demoForm) {
+  demoForm.addEventListener('submit', event => {
+    event.preventDefault();
+
+    if (!demoForm.reportValidity()) return;
+
+    const payload = Object.fromEntries(new FormData(demoForm).entries());
+
+    // Honeypot — bail silently if the hidden website field was filled
+    if ((payload.website || '').trim()) return;
+
+    const subject = encodeURIComponent('Demo request — Lobby');
+    const body = encodeURIComponent(
+      'Hi Abigail,\n\n' +
+      'I\'d love to book a demo for Lobby. Here are my details:\n\n' +
+      'Name:          ' + (payload.name    || '—') + '\n' +
+      'Email:         ' + (payload.email   || '—') + '\n' +
+      'Business:      ' + (payload.company || '—') + '\n' +
+      'Phone:         ' + (payload.phone   || '—') + '\n' +
+      (payload.message ? 'More info:\n' + payload.message + '\n' : '') +
+      '\nThanks!'
+    );
+
+    window.location.href = 'mailto:hello@abigailbuilds.com?subject=' + subject + '&body=' + body;
+
+    demoForm.reset();
+    setDemoFormStatus('Opening your email app with everything filled in…', 'is-success');
+  });
+}
+
 // ── Dashboard slideout ─────────────────────────
 const overlay = document.getElementById('dash-overlay');
 const slideout = document.getElementById('dash-slideout');
@@ -27,6 +67,8 @@ const TRANSCRIPT_PLACEHOLDER = [
   ['Caller', 'No, I think that covers it. Thanks so much.'],
   ['Lobby AI', 'Perfect. You\'ll hear back very soon. Have a wonderful day.']
 ];
+
+const DEMO_FORM_ENDPOINT = 'REPLACE_WITH_YOUR_SECURE_ENDPOINT';
 
 const callData = {
   jake: {

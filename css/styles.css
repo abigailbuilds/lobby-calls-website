@@ -880,25 +880,119 @@ input[type="range"]::-moz-range-thumb {
 /* ============================
    FINAL CTA (BEIGE GRADIENT)
 ============================ */
-#final-cta {
-  padding: 120px 0; text-align: center;
+#book-demo {
+  padding: 120px 0;
   background: linear-gradient(135deg, #C9A87C 0%, #DFC49A 50%, #A8844A 100%);
-  position: relative; overflow: hidden;
+  position: relative;
+  overflow: hidden;
 }
-#final-cta::before {
+#book-demo::before {
   content: '';
   position: absolute; inset: 0;
   background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%231A1008' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
 }
-#final-cta .container { position: relative; z-index: 1; }
-#final-cta h2 {
+#book-demo .container { position: relative; z-index: 1; }
+.book-demo-grid {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 28px;
+  align-items: stretch;
+}
+.book-demo-copy {
+  color: #1A1008;
+  padding: 18px 0;
+}
+#book-demo h2 {
   font-size: clamp(2rem, 4.5vw, 3.4rem); color: #1A1008; margin-bottom: 12px;
 }
-#final-cta .subtitle {
-  font-size: 1.3rem; color: rgba(26,16,8,0.6);
-  margin-bottom: 40px; font-style: italic;
+#book-demo .subtitle {
+  font-size: 1.15rem; color: rgba(26,16,8,0.62);
+  margin-bottom: 28px; font-style: italic; max-width: 540px;
 }
-#final-cta .cta-note {
+.book-demo-points {
+  display: flex; flex-wrap: wrap; gap: 10px;
+}
+.book-demo-point {
+  background: rgba(255,255,255,0.2);
+  border: 1px solid rgba(26,16,8,0.12);
+  color: #1A1008;
+  border-radius: 100px;
+  padding: 9px 14px;
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+.demo-form-card {
+  background: rgba(255,255,255,0.58);
+  border: 1px solid rgba(26,16,8,0.12);
+  border-radius: 28px;
+  padding: 26px;
+  box-shadow: 0 28px 60px rgba(26,16,8,0.16);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+.form-status {
+  min-height: 24px;
+  margin-bottom: 18px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #5A5048;
+}
+.form-status.is-success { color: #2E8A62; }
+.form-status.is-error { color: #A03820; }
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.form-field-full { grid-column: 1 / -1; }
+.form-field span {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(26,16,8,0.72);
+}
+.form-field input,
+.form-field textarea {
+  width: 100%;
+  border-radius: 16px;
+  border: 1px solid rgba(26,16,8,0.14);
+  background: rgba(255,255,255,0.82);
+  color: #1A1410;
+  padding: 14px 16px;
+  font: inherit;
+  transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition);
+}
+.form-field textarea { resize: vertical; min-height: 120px; }
+.form-field input:focus,
+.form-field textarea:focus {
+  outline: none;
+  border-color: rgba(26,16,8,0.38);
+  box-shadow: 0 0 0 4px rgba(26,16,8,0.08);
+}
+.form-field-hidden {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+.form-submit {
+  width: 100%;
+  justify-content: center;
+  margin-top: 20px;
+}
+.form-note {
+  margin-top: 14px;
+  font-size: 0.84rem;
+  color: rgba(26,16,8,0.55);
+}
+#book-demo .cta-note {
   margin-top: 20px; font-size: 0.875rem; color: rgba(26,16,8,0.5);
 }
 
@@ -955,10 +1049,15 @@ footer { background: var(--bg); border-top: 1px solid var(--border); padding: 52
   .footer-top { flex-direction: column; }
   .footer-bottom { flex-direction: column; text-align: center; }
   .demo-tabs { flex-wrap: wrap; }
+  .book-demo-grid { grid-template-columns: 1fr; }
+  .book-demo-copy { padding: 0; }
+  .demo-form-card { padding: 22px; }
+  .form-grid { grid-template-columns: 1fr; }
 }
 @media (max-width: 480px) {
   .steps-grid { grid-template-columns: 1fr; }
   .step { text-align: left; display: grid; grid-template-columns: 64px 1fr; align-items: start; gap: 16px; padding: 0 0 32px; }
   .step-number { margin: 0; }
   .step h3, .step p { grid-column: 2; margin-top: 0; }
+  #book-demo { padding: 96px 0; }
 }

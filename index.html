@@ -27,7 +27,7 @@
         <li><a href="#faq">FAQ</a></li>
         <li><a href="mailto:hello@abigailbuilds.com">Contact</a></li>
       </ul>
-      <a href="#video-demo" class="btn btn-beige nav-cta" aria-label="Book a free demo">Book a Demo</a>
+      <a href="#book-demo" class="btn btn-beige nav-cta" aria-label="Book a free demo">Book a Demo</a>
       <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
         <span></span><span></span><span></span>
       </button>
@@ -41,7 +41,7 @@
     <a href="#video-demo" role="menuitem">Demo</a>
     <a href="#faq" role="menuitem">FAQ</a>
     <a href="mailto:hello@abigailbuilds.com" role="menuitem">Contact</a>
-    <a href="mailto:hello@abigailbuilds.com" class="btn btn-beige" role="menuitem">Book a Demo</a>
+    <a href="#book-demo" class="btn btn-beige" role="menuitem">Book a Demo</a>
   </div>
 
   <!-- ============================
@@ -60,7 +60,7 @@
         </p>
         <div class="hero-ctas">
           <a href="#video-demo" class="btn btn-outline" aria-label="Watch demo video">Watch Demo →</a>
-          <a href="mailto:hello@abigailbuilds.com" class="btn btn-beige" aria-label="Book a demo">Book a Demo</a>
+          <a href="#book-demo" class="btn btn-beige" aria-label="Book a demo">Book a Demo</a>
         </div>
         <div class="trust-row" aria-label="Trust indicators">
           <span>Configured for you</span>
@@ -109,6 +109,52 @@
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================
+       BOOK A DEMO
+  ============================ -->
+  <section id="book-demo" aria-labelledby="cta-title">
+    <div class="container">
+      <div class="book-demo-grid">
+        <div class="book-demo-copy">
+          <div class="section-tag section-tag-dark">Book a Demo</div>
+          <h2 id="cta-title">Let's find a time that works for you.</h2>
+          <p class="subtitle">Fill in a few details and we'll be in touch to set up your personalised demo. Usually within a day.</p>
+          <p class="cta-note">No long-term contracts. Works for any business.</p>
+        </div>
+        <form class="demo-form-card" id="demo-request-form" novalidate>
+          <div class="form-status" id="demo-form-status" aria-live="polite"></div>
+          <div class="form-grid">
+            <label class="form-field">
+              <span>Your name</span>
+              <input type="text" name="name" autocomplete="name" placeholder="Jane Smith" required />
+            </label>
+            <label class="form-field">
+              <span>Your email</span>
+              <input type="email" name="email" autocomplete="email" placeholder="jane@yourbusiness.com" required />
+            </label>
+            <label class="form-field">
+              <span>Business name</span>
+              <input type="text" name="company" autocomplete="organization" placeholder="Peak Roofing Co." required />
+            </label>
+            <label class="form-field">
+              <span>Phone number</span>
+              <input type="tel" name="phone" autocomplete="tel" placeholder="(555) 000-0000" required />
+            </label>
+            <label class="form-field form-field-full">
+              <span>Anything you'd like us to know?</span>
+              <textarea name="message" rows="3" placeholder="E.g. what industry you're in, roughly how many calls you get, anything specific you'd like to see."></textarea>
+            </label>
+            <label class="form-field form-field-hidden" aria-hidden="true">
+              <span>Website</span>
+              <input type="text" name="website" tabindex="-1" autocomplete="off" />
+            </label>
+          </div>
+          <button type="submit" class="btn btn-dark btn-lg form-submit">Book my demo →</button>
+        </form>
       </div>
     </div>
   </section>
@@ -441,7 +487,7 @@
             <span class="result-value" id="res-rev-year">$270,000</span>
           </div>
           <p class="calc-note">Every unanswered call is a conversation that never happened. Lobby makes sure you're always in it.</p>
-          <a href="mailto:hello@abigailbuilds.com" class="btn btn-dark btn-lg" style="width:100%;justify-content:center;" aria-label="Book a demo">Book a Demo</a>
+          <a href="#book-demo" class="btn btn-dark btn-lg" style="width:100%;justify-content:center;" aria-label="Book a demo">Book a Demo</a>
         </div>
       </div>
     </div>
@@ -608,18 +654,6 @@
   </section>
 
   <!-- ============================
-       FINAL CTA (BEIGE GRADIENT)
-  ============================ -->
-  <section id="final-cta" aria-labelledby="cta-title">
-    <div class="container">
-      <h2 id="cta-title">Never wonder who called again.</h2>
-      <p class="subtitle">Every call answered. Every conversation summarized.</p>
-      <a href="mailto:hello@abigailbuilds.com" class="btn btn-dark btn-lg" aria-label="Book your free demo">Book Your Free Demo</a>
-      <p class="cta-note">No long-term contracts. Works for any business.</p>
-    </div>
-  </section>
-
-  <!-- ============================
        FOOTER
   ============================ -->
   <footer role="contentinfo">
@@ -656,7 +690,7 @@
     </div>
     <p class="rec-popover-title">Recording playback is live in your account</p>
     <p class="rec-popover-body">This is a preview dashboard. In your real Lobby account every call is recorded and plays back right here — no external tools needed.</p>
-    <a href="mailto:hello@abigailbuilds.com" class="rec-popover-cta">Book a Demo &rarr;</a>
+    <a href="#book-demo" class="rec-popover-cta">Book a Demo &rarr;</a>
   </div>
 
   <script src="js/main.js" defer></script>
