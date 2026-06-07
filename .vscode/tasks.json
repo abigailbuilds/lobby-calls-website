@@ -1,0 +1,11 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Open in Browser",
+      "type": "shell",
+      "command": "Start-Process 'c:\\Users\\hughe\\Projects\\lobby-calls-website\\index.html'",
+      "inAgents": true
+    }
+  ]
+}
